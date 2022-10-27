@@ -24,8 +24,6 @@
 
     <div id="app">
 
-        <h1>{{ imgPosition }}</h1>
-
         <div class="container text-center">
             <div class="slider position-relative">
 
@@ -50,7 +48,7 @@
 
                 <div class="thumbs position-absolute top-0 end-0">
 
-                    <div class="single_thumb" v-for="(object, index) in gameList">
+                    <div class="single_thumb" v-for="(object, index) in gameList" @click = "selectedThumb(index)">
 
                         <img :src="object.image" :class=" index === imgPosition ? 'active' : ''" alt="">
 
