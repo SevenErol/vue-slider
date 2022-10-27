@@ -32,10 +32,10 @@
                 <div class="title_and_description position-absolute bottom-0">
 
 
-                    <h3 :class = "activeClass">
+                    <h3 :class="activeClass">
                         {{gameList[imgPosition].title}}
                     </h3>
-                    <p :class = "activeClass">
+                    <p :class="activeClass">
                         {{gameList[imgPosition].text}}
                     </p>
 
@@ -44,11 +44,26 @@
 
                 <div class="slides">
 
-                    <img :src="gameList[imgPosition].image" :class = "activeClass" alt="">
+                    <img :src="gameList[imgPosition].image" :class="activeClass" alt="">
 
                 </div>
 
                 <div class="thumbs position-absolute top-0 end-0">
+
+                    <div class="single_thumb">
+
+                        <template v-for="object in gameList">
+
+                            <img :src="object.image" :class="activeClass" alt="">
+
+                            <div class="overlay" :class="activeClass"></div>
+
+                        </template>
+
+
+                    </div>
+
+
 
                     <div
                         class="previous position-absolute top-0 start-50 translate-middle-x d-flex justify-content-center align-items-center">
