@@ -50,16 +50,11 @@
 
                 <div class="thumbs position-absolute top-0 end-0">
 
-                    <div class="single_thumb">
+                    <div class="single_thumb" v-for="(object, index) in gameList">
 
-                        <template v-for="object in gameList">
+                        <img :src="object.image" :class=" index === imgPosition ? 'active' : ''" alt="">
 
-                            <img :src="object.image" :class="activeClass" alt="">
-
-                            <div class="overlay" :class="activeClass"></div>
-
-                        </template>
-
+                        <div class="overlay" :class=" index === imgPosition ? 'active' : '' "></div>
 
                     </div>
 
