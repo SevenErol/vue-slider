@@ -17,242 +17,264 @@ import { classRemover } from "./Functions/helper/class-remover.js";
 // import nodeLists management function
 import { nodeListOfNodeLists } from "./Functions/nodelists.js";
 
-// taking div to append title and description
-const titleDescription = document.querySelector(".title_and_description");
+const { createApp } = Vue
 
-// taking div to append slides
-const slides = document.querySelector(".slides");
+createApp({
+    data() {
+        return {
 
-// taking div to append thumbnails
-const thumbs = document.querySelector(".thumbs");
+            imgPosition: 0,
+            gameList: games,
+            activeClass: "active"
 
-// taking button previous image
-const previous = document.querySelector(".previous");
-
-// taking button next image
-const next = document.querySelector(".next");
-
-// set image position equals zero
-let imgPosition = 0;
-
-
-// invoking function to generate slides
-createSlides(games, slides, titleDescription);
-
-// invoking function to generate thumbnails
-createThumbs(games, thumbs);
-
-// taking titles nodeList
-const allTitles = document.querySelectorAll(".title_and_description h3");
-
-// taking descriptions nodeList
-const allDescriptions = document.querySelectorAll(".title_and_description p");
-
-// taking images nodeList
-const allImages = document.querySelectorAll(".slides img");
-
-// taking overlays nodeList
-const allOverlay = document.querySelectorAll(".single_thumb div");
-
-// invoked functions for adding classes to array of Nodelists
-
-const everyNodeList = nodeListOfNodeLists(allTitles, allDescriptions, allImages, allOverlay);
-
-everyNodeList.forEach(element => {
-
-    classAdder(element, imgPosition, "active");
-
-})
-
-
-// event listener for previous image
-
-previous.addEventListener("click", function () {
-
-    everyNodeList.forEach(element => {
-
-        classRemover(element, imgPosition, "active");
-
-    })
-
-    imgPosition--;
-
-    if (imgPosition < 0) {
-
-        imgPosition = games.length - 1;
-
-        everyNodeList.forEach(element => {
-
-            classAdder(element, imgPosition, "active");
-
-        })
-
-
-    } else {
-
-        everyNodeList.forEach(element => {
-
-            classAdder(element, imgPosition, "active");
-
-        })
+        }
     }
-})
+}).mount('#app')
 
-// event listener for next image
+console.log(games)
 
-next.addEventListener("click", function () {
 
-    everyNodeList.forEach(element => {
 
-        classRemover(element, imgPosition, "active");
 
-    })
 
 
-    imgPosition++;
 
-    if (imgPosition > games.length - 1) {
+// // taking div to append title and description
+// const titleDescription = document.querySelector(".title_and_description");
 
-        imgPosition = 0;
+// // taking div to append slides
+// const slides = document.querySelector(".slides");
 
-        everyNodeList.forEach(element => {
+// // taking div to append thumbnails
+// const thumbs = document.querySelector(".thumbs");
 
-            classAdder(element, imgPosition, "active");
+// // taking button previous image
+// const previous = document.querySelector(".previous");
 
-        })
+// // taking button next image
+// const next = document.querySelector(".next");
 
+// // set image position equals zero
+// let imgPosition = 0;
 
-    } else {
 
-        everyNodeList.forEach(element => {
+// // invoking function to generate slides
+// createSlides(games, slides, titleDescription);
 
-            classAdder(element, imgPosition, "active");
+// // invoking function to generate thumbnails
+// createThumbs(games, thumbs);
 
-        })
-    }
-})
+// // taking titles nodeList
+// const allTitles = document.querySelectorAll(".title_and_description h3");
 
-// arrow function for next image
+// // taking descriptions nodeList
+// const allDescriptions = document.querySelectorAll(".title_and_description p");
 
-const nextImage = () => {
+// // taking images nodeList
+// const allImages = document.querySelectorAll(".slides img");
 
-    everyNodeList.forEach(element => {
+// // taking overlays nodeList
+// const allOverlay = document.querySelectorAll(".single_thumb div");
 
-        classRemover(element, imgPosition, "active");
+// // invoked functions for adding classes to array of Nodelists
 
-    })
+// const everyNodeList = nodeListOfNodeLists(allTitles, allDescriptions, allImages, allOverlay);
 
-    imgPosition++;
+// everyNodeList.forEach(element => {
 
-    if (imgPosition > games.length - 1) {
+//     classAdder(element, imgPosition, "active");
 
-        imgPosition = 0;
+// })
 
-        everyNodeList.forEach(element => {
 
-            classAdder(element, imgPosition, "active");
+// // event listener for previous image
 
-        })
+// previous.addEventListener("click", function () {
 
-    } else {
+//     everyNodeList.forEach(element => {
 
-        everyNodeList.forEach(element => {
+//         classRemover(element, imgPosition, "active");
 
-            classAdder(element, imgPosition, "active");
+//     })
 
-        })
+//     imgPosition--;
 
-    }
+//     if (imgPosition < 0) {
 
-}
+//         imgPosition = games.length - 1;
 
-// arrow function for previous image
+//         everyNodeList.forEach(element => {
 
-const previousImage = () => {
+//             classAdder(element, imgPosition, "active");
 
-    everyNodeList.forEach(element => {
+//         })
 
-        classRemover(element, imgPosition, "active");
 
-    })
+//     } else {
 
-    imgPosition--;
+//         everyNodeList.forEach(element => {
 
-    if (imgPosition < 0) {
+//             classAdder(element, imgPosition, "active");
 
-        imgPosition = games.length - 1;
+//         })
+//     }
+// })
 
-        everyNodeList.forEach(element => {
+// // event listener for next image
 
-            classAdder(element, imgPosition, "active");
+// next.addEventListener("click", function () {
 
-        })
+//     everyNodeList.forEach(element => {
 
+//         classRemover(element, imgPosition, "active");
 
-    } else {
+//     })
 
-        everyNodeList.forEach(element => {
 
-            classAdder(element, imgPosition, "active");
+//     imgPosition++;
 
-        })
-    }
+//     if (imgPosition > games.length - 1) {
 
-}
+//         imgPosition = 0;
 
-// interval for scrolling images forward every tot seconds
-let forwardImages = setInterval(nextImage, 3000);
+//         everyNodeList.forEach(element => {
 
-// taking start auto-play button
-const startButton = document.querySelector(".start");
+//             classAdder(element, imgPosition, "active");
 
-// taking stop auto-play button
-const stopButton = document.querySelector(".stop");
+//         })
 
-// takin reverse auto-play button
-const reverseButton = document.querySelector(".reverse");
 
-// event listener to start auto-play
-startButton.addEventListener("click", function () {
+//     } else {
 
-    clearInterval(forwardImages);
+//         everyNodeList.forEach(element => {
 
-    clearInterval(reverseImages);
+//             classAdder(element, imgPosition, "active");
 
-    everyNodeList.forEach(element => {
+//         })
+//     }
+// })
 
-        classRemover(element, imgPosition, "active");
+// // arrow function for next image
 
-    })
+// const nextImage = () => {
 
-    imgPosition = 0;
+//     everyNodeList.forEach(element => {
 
-    everyNodeList.forEach(element => {
+//         classRemover(element, imgPosition, "active");
 
-        classAdder(element, imgPosition, "active");
+//     })
 
-    })
+//     imgPosition++;
 
-    forwardImages = setInterval(nextImage, 3000);
-})
+//     if (imgPosition > games.length - 1) {
 
-// event listener to stop auto-play
+//         imgPosition = 0;
 
-stopButton.addEventListener("click", function () {
+//         everyNodeList.forEach(element => {
 
-    clearInterval(forwardImages);
+//             classAdder(element, imgPosition, "active");
 
-    clearInterval(reverseImages);
+//         })
 
-})
+//     } else {
 
-// event listener for reverse auto-play
+//         everyNodeList.forEach(element => {
 
-let reverseImages;
+//             classAdder(element, imgPosition, "active");
 
-reverseButton.addEventListener("click", function () {
+//         })
 
-    clearInterval(forwardImages);
+//     }
 
-    reverseImages = setInterval(previousImage, 3000);
-})
+// }
+
+// // arrow function for previous image
+
+// const previousImage = () => {
+
+//     everyNodeList.forEach(element => {
+
+//         classRemover(element, imgPosition, "active");
+
+//     })
+
+//     imgPosition--;
+
+//     if (imgPosition < 0) {
+
+//         imgPosition = games.length - 1;
+
+//         everyNodeList.forEach(element => {
+
+//             classAdder(element, imgPosition, "active");
+
+//         })
+
+
+//     } else {
+
+//         everyNodeList.forEach(element => {
+
+//             classAdder(element, imgPosition, "active");
+
+//         })
+//     }
+
+// }
+
+// // interval for scrolling images forward every tot seconds
+// let forwardImages = setInterval(nextImage, 3000);
+
+// // taking start auto-play button
+// const startButton = document.querySelector(".start");
+
+// // taking stop auto-play button
+// const stopButton = document.querySelector(".stop");
+
+// // takin reverse auto-play button
+// const reverseButton = document.querySelector(".reverse");
+
+// // event listener to start auto-play
+// startButton.addEventListener("click", function () {
+
+//     clearInterval(forwardImages);
+
+//     clearInterval(reverseImages);
+
+//     everyNodeList.forEach(element => {
+
+//         classRemover(element, imgPosition, "active");
+
+//     })
+
+//     imgPosition = 0;
+
+//     everyNodeList.forEach(element => {
+
+//         classAdder(element, imgPosition, "active");
+
+//     })
+
+//     forwardImages = setInterval(nextImage, 3000);
+// })
+
+// // event listener to stop auto-play
+
+// stopButton.addEventListener("click", function () {
+
+//     clearInterval(forwardImages);
+
+//     clearInterval(reverseImages);
+
+// })
+
+// // event listener for reverse auto-play
+
+// let reverseImages;
+
+// reverseButton.addEventListener("click", function () {
+
+//     clearInterval(forwardImages);
+
+//     reverseImages = setInterval(previousImage, 3000);
+// })

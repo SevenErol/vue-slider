@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javascript Object Carousel</title>
+    <title>Vue JS Object Carousel</title>
 
     <!-- link my CSS -->
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -22,36 +22,59 @@
 
 <body>
 
-    <div class="container text-center">
-        <div class="slider position-relative">
+    <div id="app">
 
-            <div class="title_and_description position-absolute bottom-0"></div>
+        <h1>{{ imgPosition }}</h1>
 
-            <div class="slides">
+        <div class="container text-center">
+            <div class="slider position-relative">
+
+                <div class="title_and_description position-absolute bottom-0">
+
+
+                    <h3 :class = "activeClass">
+                        {{gameList[imgPosition].title}}
+                    </h3>
+                    <p :class = "activeClass">
+                        {{gameList[imgPosition].text}}
+                    </p>
+
+
+                </div>
+
+                <div class="slides">
+
+                    <img :src="gameList[imgPosition].image" :class = "activeClass" alt="">
+
+                </div>
+
+                <div class="thumbs position-absolute top-0 end-0">
+
+                    <div
+                        class="previous position-absolute top-0 start-50 translate-middle-x d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </div>
+
+                    <div
+                        class="next position-absolute bottom-0 start-50 translate-middle-x d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </div>
+
+                </div>
+
 
             </div>
 
-            <div class="thumbs position-absolute top-0 end-0">
+            <button class="mt-5 start">Start auto-play</button>
 
-                <div class="previous position-absolute top-0 start-50 translate-middle-x d-flex justify-content-center align-items-center">
-                    <i class="fa-solid fa-arrow-up"></i>
-                </div>
-    
-                <div class="next position-absolute bottom-0 start-50 translate-middle-x d-flex justify-content-center align-items-center">
-                    <i class="fa-solid fa-arrow-down"></i>
-                </div>
+            <button class="mt-5 stop">Stop auto-play</button>
 
-            </div>
-
-            
+            <button class="mt-5 reverse">Reverse auto-play</button>
         </div>
 
-        <button class="mt-5 start">Start auto-play</button>
 
-        <button class="mt-5 stop">Stop auto-play</button>
-
-        <button class="mt-5 reverse">Reverse auto-play</button>
     </div>
+
 
 
     <!-- script bootstrap -->
@@ -59,6 +82,8 @@
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>
 
+    <!-- CDN for Vue.js -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <!-- my script -->
     <script src="./assets/javascript/script.js" type="module"></script>
