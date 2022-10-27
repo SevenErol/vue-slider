@@ -28,6 +28,31 @@ createApp({
             activeClass: "active"
 
         }
+    },
+
+    methods: {
+
+        nextImage() {
+
+            this.imgPosition++
+
+            if (this.imgPosition > games.length - 1) {
+
+                this.imgPosition = 0
+
+            }
+        },
+
+        prevImage () {
+
+            this.imgPosition--
+            
+            if(this.imgPosition < 0) {
+
+                this.imgPosition = games.length - 1
+
+            }
+        }
     }
 }).mount('#app')
 
@@ -35,124 +60,6 @@ console.log(games)
 
 
 
-
-
-
-
-// // taking div to append title and description
-// const titleDescription = document.querySelector(".title_and_description");
-
-// // taking div to append slides
-// const slides = document.querySelector(".slides");
-
-// // taking div to append thumbnails
-// const thumbs = document.querySelector(".thumbs");
-
-// // taking button previous image
-// const previous = document.querySelector(".previous");
-
-// // taking button next image
-// const next = document.querySelector(".next");
-
-// // set image position equals zero
-// let imgPosition = 0;
-
-
-// // invoking function to generate slides
-// createSlides(games, slides, titleDescription);
-
-// // invoking function to generate thumbnails
-// createThumbs(games, thumbs);
-
-// // taking titles nodeList
-// const allTitles = document.querySelectorAll(".title_and_description h3");
-
-// // taking descriptions nodeList
-// const allDescriptions = document.querySelectorAll(".title_and_description p");
-
-// // taking images nodeList
-// const allImages = document.querySelectorAll(".slides img");
-
-// // taking overlays nodeList
-// const allOverlay = document.querySelectorAll(".single_thumb div");
-
-// // invoked functions for adding classes to array of Nodelists
-
-// const everyNodeList = nodeListOfNodeLists(allTitles, allDescriptions, allImages, allOverlay);
-
-// everyNodeList.forEach(element => {
-
-//     classAdder(element, imgPosition, "active");
-
-// })
-
-
-// // event listener for previous image
-
-// previous.addEventListener("click", function () {
-
-//     everyNodeList.forEach(element => {
-
-//         classRemover(element, imgPosition, "active");
-
-//     })
-
-//     imgPosition--;
-
-//     if (imgPosition < 0) {
-
-//         imgPosition = games.length - 1;
-
-//         everyNodeList.forEach(element => {
-
-//             classAdder(element, imgPosition, "active");
-
-//         })
-
-
-//     } else {
-
-//         everyNodeList.forEach(element => {
-
-//             classAdder(element, imgPosition, "active");
-
-//         })
-//     }
-// })
-
-// // event listener for next image
-
-// next.addEventListener("click", function () {
-
-//     everyNodeList.forEach(element => {
-
-//         classRemover(element, imgPosition, "active");
-
-//     })
-
-
-//     imgPosition++;
-
-//     if (imgPosition > games.length - 1) {
-
-//         imgPosition = 0;
-
-//         everyNodeList.forEach(element => {
-
-//             classAdder(element, imgPosition, "active");
-
-//         })
-
-
-//     } else {
-
-//         everyNodeList.forEach(element => {
-
-//             classAdder(element, imgPosition, "active");
-
-//         })
-//     }
-// })
 
 // // arrow function for next image
 
